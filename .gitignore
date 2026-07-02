@@ -1,0 +1,50 @@
+# Environnement Python
+.env
+.env.*
+*.env
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+env/
+
+# Conda
+*.conda
+
+# VS Code
+.vscode/settings.json
+.vscode/launch.json
+
+# Données sensibles
+*.pem
+*.key
+*.cert
+secrets/
+
+# Dataset & fichiers lourds
+data/raw/
+*.pdf
+*.json.bak
+
+# Logs
+*.log
+logs/
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# Flutter
+**/pubspec.lock
+**/android/.gradle
+**/android/captures/
+**/ios/Pods/
+**/ios/.symlinks/
+**/.dart_tool/
+**/.flutter-plugins
+**/.flutter-plugins-dependencies
+**/build/
+
+# OS
+.DS_Store
+Thumbs.db
