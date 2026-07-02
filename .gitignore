@@ -1,12 +1,17 @@
-# Environnement Python
+
+# Environnement Python - fichiers sensibles uniquement
 .env
-.env.*
-*.env
+.env.local
+.env.production
+.env.development
+.venv/
+env/
+# Ne PAS ignorer .env.example - c'est de la documentation
+!.env.example
 __pycache__/
 *.py[cod]
 *.pyo
-.venv/
-env/
+
 
 # Conda
 *.conda
