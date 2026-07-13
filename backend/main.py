@@ -14,7 +14,7 @@ logger = structlog.get_logger()
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("Starting JobMatch AI", version=settings.APP_VERSION)
-    # Base.metadata.create_all(bind=engine)  # activé après install PostgreSQL
+    Base.metadata.create_all(bind=engine)  # activé après install PostgreSQL
     logger.info("JobMatch AI started successfully")
     yield
     logger.info("Shutting down JobMatch AI")
