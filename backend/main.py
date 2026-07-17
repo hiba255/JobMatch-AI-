@@ -5,7 +5,11 @@ from contextlib import asynccontextmanager
 from core.config import settings
 from core.database import Base, engine
 import structlog
-
+# Import des modèles pour que SQLAlchemy crée les tables
+from modules.auth.models import User
+from modules.cv.models import CV
+from modules.jobs.models import Job
+from modules.matching.models import Match
 # Initialize structured logging. Using structlog ensures clean, machine-readable 
 # JSON logs in production (perfect for ELK, Loki, or Datadog ingestion).
 logger = structlog.get_logger()
@@ -27,7 +31,7 @@ async def lifespan(app: FastAPI):
     # NOTE: DDL generation via SQLAlchemy is commented out below.
     # In production, schema migrations should be managed externally using Alembic 
     # to maintain database state history and avoid race conditions during horizontal scaling.
-    # Base.metadata.create_all(bind=engine)  # Activé après install PostgreSQL
+    Base.metadata.create_all(bind=engine)  # Activé après install PostgreSQL
     
     logger.info("JobMatch AI started successfully")
     yield  # Control yields here; the application is actively serving traffic
