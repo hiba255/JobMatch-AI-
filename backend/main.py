@@ -10,6 +10,8 @@ from modules.auth.models import User
 from modules.cv.models import CV
 from modules.jobs.models import Job
 from modules.matching.models import Match
+# Import des routes
+from modules.auth.router import router as auth_router
 # Initialize structured logging. Using structlog ensures clean, machine-readable 
 # JSON logs in production (perfect for ELK, Loki, or Datadog ingestion).
 logger = structlog.get_logger()
@@ -73,10 +75,10 @@ app.add_middleware(
 # by dropping any incoming requests where the host header doesn't match this whitelist.
 app.add_middleware(
     TrustedHostMiddleware,
-    allowed_hosts=["localhost", "127.0.0.1", "*.railway.app", "*.render.com"]
+    allowed_hosts=["localhost", "127.0.0.1", "*.railway.app", "*.render.com", "*"]
 )
 
-
+app.include_router(auth_router, prefix="/api/v1")
 # ─── OPERATIONAL / MONITORING ENDPOINTS ──────────────────────────────────────
 
 @app.get("/", tags=["Health"])
