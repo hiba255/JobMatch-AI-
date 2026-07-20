@@ -41,7 +41,7 @@ def logout(
     credentials: HTTPAuthorizationCredentials = Depends(security),
     user_id: str = Depends(get_current_user)
 ):
-    """Révoque les tokens de l utilisateur connecté."""
+    """Révoque les tokens de l'utilisateur connecté."""
     logout_user(access_token=credentials.credentials)
     return None
 
