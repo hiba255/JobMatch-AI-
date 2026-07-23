@@ -12,6 +12,7 @@ from modules.jobs.models import Job
 from modules.matching.models import Match
 # Import des routes
 from modules.auth.router import router as auth_router
+from modules.cv.router import router as cv_router
 # Initialize structured logging. Using structlog ensures clean, machine-readable 
 # JSON logs in production (perfect for ELK, Loki, or Datadog ingestion).
 logger = structlog.get_logger()
@@ -79,6 +80,8 @@ app.add_middleware(
 )
 
 app.include_router(auth_router, prefix="/api/v1")
+
+app.include_router(cv_router, prefix="/api/v1")
 # ─── OPERATIONAL / MONITORING ENDPOINTS ──────────────────────────────────────
 
 @app.get("/", tags=["Health"])
